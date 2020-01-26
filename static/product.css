@@ -1,0 +1,165 @@
+.product_layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.primary_image {
+  width: 660px;
+  height: 480px;
+}
+
+.primary_image__placeholder {
+  height: 100%;
+  width: 100%;
+  background: #2B333F;
+  border-radius: 12px;
+}
+
+.secondary_images {
+  margin-top: 12px;
+  display: flex;
+}
+
+.secondary_image {
+  width: 110px;
+  height: 80px;
+  margin-right: 12px;
+}
+
+.secondary_image__placeholder {
+  height: 100%;
+  width: 100%;
+  background: #2B333F;
+  border-radius: 12px;
+}
+
+.information_tabs {
+  margin-top: 44px;
+  display: flex;
+  margin-bottom: 24px;
+}
+.information_tabs__tab {
+  margin-right: 16px;
+  color: #2B333F;
+  opacity: 0.4;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+
+  cursor: pointer;
+}
+
+.information_tabs__tab_active {
+  opacity: 1;
+}
+
+.description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2B333F;
+}
+
+.offers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 8px;
+}
+
+.offer {
+  padding: 24px 24px 26px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  background: #F2F5F9;
+  border-radius: 20px;
+}
+
+.offer__org_name {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
+}
+
+.offer__buy_information {
+  display: flex;
+  flex-direction: column;
+}
+
+.offer__price {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
+}
+
+.offer__volume {
+  margin-top: 2px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #2B333F;
+}
+
+.offer__volume_filling {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
+}
+
+.active_offer {
+  top: 0;
+  position: sticky;
+  padding: 24px;
+  background: #F2F5F9;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.active_offer__product_name {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  color: #2B333F;
+  margin-bottom: 26px;
+}
+
+.active_offer__properties {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 12px;
+}
+
+.active_offer__property {
+  display: flex;
+  align-items: center;
+}
+.active_offer__property_key {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #2B333F;
+  margin-right: 16px;
+}
+.active_offer__property_value {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
+}
+.active_offer__button {
+  margin-top: 16px;
+}

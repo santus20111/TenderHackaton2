@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main-banner {
+  background: linear-gradient(253.61deg, #E44A41 0%, #F78989 0.01%, #F86961 100%);
+  border-radius: 20px;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-banner__h1 {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 49px;
+  margin-top: 23px;
+  color: white;
+}
+
+.main-banner__text {
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: white;
+}
+
+.main-banner__button {
+  margin-top: 49px;
+  box-shadow: 0px 8px 12px rgba(173, 72, 72, 0.24);
+  width: 260px;
+}
+
+.main-banner__placeholder {
+  width: 400px;
+  height: 220px;
+  background: #F2F5F9;
+}
+
+.hot-categories {
+  margin-top: 44px;
+}
+
+.hot-categories__header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hot-categories__title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2B333F;
+}
+
+.hot-categories__link_all {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #F0584F;
+}
+
+.hot-categories__grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hot-category {
+  padding: 20px 36px;
+  background: #F2F5F9;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+}
+
+.hot-category__image_placeholder {
+  width: 60px;
+  height: 60px;
+  background: #2B333F;
+}
+
+.hot-category__name {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #2B333F;
+}
+
+.hot-offers {
+  margin-top: 45px;
+}
+
+.hot-offers__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.hot-offers__title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2B333F;
+}
+
+.hot-offers__link_all {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #F0584F;
+}
+
+.hot-offers__grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.hot-offer {
+  display: flex;
+  flex-direction: column;
+}
+
+.hot-offer__image_placeholder {
+  width: 230px;
+  height: 160px;
+  background: #2B333F;
+}
+
+.hot-offer__name {
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2B333F;
+}
+
+.hot-offer__price {
+  margin-top: 16px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
+}
+
+.hot-offer__volume {
+  margin-top: 2px;
+  margin-bottom: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #C2CAD6;
+}

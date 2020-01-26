@@ -4,19 +4,19 @@
     <div class="page product_layout">
       <div>
         <div class="primary_image">
-          <div class="primary_image__placeholder"></div>
+          <img :src="product.image" class="image">
         </div>
-        <div class="secondary_images">
-          <div class="secondary_image">
-            <div class="secondary_image__placeholder"></div>
-          </div>
-          <div class="secondary_image">
-            <div class="secondary_image__placeholder"></div>
-          </div>
-          <div class="secondary_image">
-            <div class="secondary_image__placeholder"></div>
-          </div>
-        </div>
+        <!--        <div class="secondary_images">
+                  <div class="secondary_image">
+                    <div class="secondary_image__placeholder"></div>
+                  </div>
+                  <div class="secondary_image">
+                    <div class="secondary_image__placeholder"></div>
+                  </div>
+                  <div class="secondary_image">
+                    <div class="secondary_image__placeholder"></div>
+                  </div>
+                </div>-->
         <div class="information_tabs">
           <div
             :class="{'information_tabs__tab': true,  'information_tabs__tab_active': activeInformationTab === 'description'}"
@@ -29,20 +29,15 @@
         </div>
 
         <div class="description" v-show="activeInformationTab === 'description'">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {{product.description}}
         </div>
 
         <div class="offers" v-show="activeInformationTab === 'offers'">
           <div :key="key" class="offer" v-for="(offer, key) in offers">
             <div class="offer__org_name">{{offer.organisationName}}</div>
             <div class="offer__buy_information">
-              <div class="offer__price">{{offer.price}}</div>
-              <div class="offer__volume">{{offer.minVolume}}</div>
+              <div class="offer__price">{{offer.price}}&nbsp;₽ / шт.</div>
+              <div class="offer__volume">от&nbsp;{{offer.minVolume}}&nbsp;шт.</div>
             </div>
             <div class="offer__volume_filling">{{offer.currentBuyers}} из {{offer.targetBuyers}} шт.</div>
           </div>
@@ -50,7 +45,7 @@
       </div>
       <div>
         <div class="active_offer">
-          <div class="active_offer__product_name">Название товара</div>
+          <div class="active_offer__product_name">{{product.name}}</div>
 
           <div class="active_offer__properties" v-show="selectedOffer === null">
             <div class="active_offer__property">
@@ -67,11 +62,11 @@
             </div>
             <div class="active_offer__property">
               <div class="active_offer__property_key">Стоимость:</div>
-              <div class="active_offer__property_value">{{selectedOffer.price}}</div>
+              <div class="active_offer__property_value">{{selectedOffer.price}}&nbsp;₽ / шт.</div>
             </div>
             <div class="active_offer__property">
               <div class="active_offer__property_key">Мин. объем:</div>
-              <div class="active_offer__property_value">{{selectedOffer.minVolume}}</div>
+              <div class="active_offer__property_value">от&nbsp;{{selectedOffer.minVolume}}&nbsp;шт.</div>
             </div>
             <div class="active_offer__property">
               <div class="active_offer__property_key">Готовность:</div>
@@ -89,19 +84,42 @@
       </div>
     </div>
     <hack-footer></hack-footer>
+    <hack-dialog :show.sync="isShowSubmitFormOfferDialog" title="Оформление закупки" v-if="isShowSubmitFormOfferDialog" width="520px">
+      <hack-input placeholder="Кол-во" v-model="order.count"/>
+      <hack-input placeholder="Email" style="margin-top: 10px" v-model="order.email"/>
+
+      <div slot="footer">
+        <div class="submit_form_footer">
+          <div class="submit_form_footer_price">
+            <div class="submit_form_footer_price__label">К оплате:</div>
+            <div class="submit_form_footer_price__price">{{order.count * selectedOffer.price}}&nbsp;₽</div>
+          </div>
+          <div @click="submitOfferForm" class="button button_primary">Оплатить партию</div>
+        </div>
+      </div>
+    </hack-dialog>
+
+
+    <hack-dialog :show.sync="isShowSubmittedOfferDialog" title="Заявка успешно оформлена" v-if="isShowSubmittedOfferDialog" width="520px">
+      <span class="submitted_form">Когда наберется необходимое количество товаров в закупке, начнется процесс доставки ваших товаров.</span>
+    </hack-dialog>
   </div>
 </template>
 
 <script>
-  import header from "../components/header";
-  import footer from "../components/footer";
-  import Progress from "../components/progress";
+  import header from "../../components/header";
+  import footer from "../../components/footer";
+  import Progress from "../../components/progress";
+  import Dialog from "../../components/dialog";
+  import Input from "../../components/input"
 
   export default {
     components: {
+      'hack-dialog': Dialog,
       'hack-progress': Progress,
       'hack-header': header,
-      'hack-footer': footer
+      'hack-footer': footer,
+      'hack-input': Input
     },
     head() {
       return {
@@ -110,36 +128,23 @@
         ]
       }
     },
+    async asyncData({app, route}) {
+      let product = await app.$productApi.getById(+route.params.id)
+      let offers = (await app.$offerApi.getByProductId(+route.params.id))
+        .filter(offer => offer.targetBuyers > offer.currentBuyers)
+
+      return {
+        product: product,
+        offers: offers
+      }
+    },
     data() {
       return {
+        order: null,
         activeInformationTab: 'description',
         selectedOffer: null,
-        offers: [
-          {
-            organisationName: 'ООО “Поставщик”',
-            price: '12 990 ₽ / шт.',
-            minVolume: 'от 35 шт.',
-            currentBuyers: 12000,
-            targetBuyers: 15000,
-            deliveryDate: '30 января'
-          },
-          {
-            organisationName: 'ООО “Поставщик”',
-            price: '12 990 ₽ / шт.',
-            minVolume: 'от 35 шт.',
-            currentBuyers: 12000,
-            targetBuyers: 15000,
-            deliveryDate: '30 января'
-          },
-          {
-            organisationName: 'ООО “Поставщик”',
-            price: '12 990 ₽ / шт.',
-            minVolume: 'от 35 шт.',
-            currentBuyers: 12000,
-            targetBuyers: 15000,
-            deliveryDate: '30 января'
-          }
-        ]
+        isShowSubmitFormOfferDialog: false,
+        isShowSubmittedOfferDialog: false
       }
     },
     methods: {
@@ -150,7 +155,21 @@
         this.activeInformationTab = tabName
       },
       openSubmitOfferForm() {
+        this.order = {
+          count: 0,
+          email: null
+        }
+        this.isShowSubmitFormOfferDialog = true
+      },
+      async submitOfferForm() {
+        await this.$offerApi.submit(this.selectedOffer.id, this.order.count, this.order.email)
+        this.$store.commit('addMyOffer', {
+          offerId: this.selectedOffer.id,
+          count: +this.order.count
+        })
 
+        this.isShowSubmitFormOfferDialog = false
+        this.isShowSubmittedOfferDialog = true
       }
     }
   }

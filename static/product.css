@@ -118,7 +118,7 @@
 }
 
 .active_offer {
-  top: 0;
+  top: 32px;
   position: sticky;
   padding: 24px;
   background: #F2F5F9;
@@ -136,24 +136,28 @@
 }
 
 .active_offer__properties {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: table;
   grid-row-gap: 12px;
+  border-spacing:0 12px;
 }
 
 .active_offer__property {
-  display: flex;
-  align-items: center;
+  display: table-row;
 }
+
 .active_offer__property_key {
+  display: table-cell;
+  padding-right: 16px;
+
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   color: #2B333F;
-  margin-right: 16px;
 }
 .active_offer__property_value {
+  display: table-cell;
+
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -162,4 +166,40 @@
 }
 .active_offer__button {
   margin-top: 16px;
+}
+
+.submit_form_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submit_form_footer_price {
+  display: flex;
+  align-items: center;
+}
+
+.submit_form_footer_price__label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #2B333F;
+  margin-right: 8px;
+}
+
+.submit_form_footer_price__price {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
+}
+
+.submitted_form {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2B333F;
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="header" @click="goHome">
-    <img class="header__logo" src="/logo.png">
+  <div class="header">
+    <nuxt-link to="/"><img class="header__logo" src="/logo.png"></nuxt-link>
     <div class="header__category_icon">
       <div class="header__category_icon_1"/>
       <div class="header__category_icon_2"/>
@@ -9,13 +9,15 @@
     <div class="header__category_name">Категории</div>
     <input class="header__search" placeholder="Поиск товара...">
     <div class="header__account">
-      <div class="flex column">
-        <div class="flex">
-          <div class="header__username">Александр</div>
-          <img class="header__username_more_icon" src="/arrow-down.svg">
+      <nuxt-link to="/my-offers">
+        <div class="flex column">
+          <div class="flex">
+            <div class="header__username">Александр</div>
+            <img class="header__username_more_icon" src="/arrow-down.svg">
+          </div>
+          <div class="header__account_company">ООО "Воробушки"</div>
         </div>
-        <div class="header__account_company">ООО "Воробушки"</div>
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>

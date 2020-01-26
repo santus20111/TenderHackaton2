@@ -25,8 +25,7 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: [{src: '~/plugins/vuex-persist', ssr: false }, '~/plugins/api.js'],
   /*
   ** Nuxt.js dev-modules
   */
@@ -36,8 +35,10 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-  ],
+  modules: ['@nuxtjs/axios'],
+  axios: {
+    baseURL: 'http://193.9.60.137:10022/'
+  },
   /*
   ** Build configuration
   */

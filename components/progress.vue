@@ -16,10 +16,10 @@
 <style scoped>
   .progress {
     position: relative;
-    height: 40px;
+    height: 26px;
     border-radius: 20px;
-    padding-top: 11px;
-    padding-bottom: 11px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     display: flex;
     justify-content: center;
     align-items: center;

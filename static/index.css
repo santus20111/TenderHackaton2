@@ -9,6 +9,11 @@
   padding: 30px 50px;
   display: flex;
   justify-content: space-between;
+  height: 240px;
+}
+
+.main-banner > div:nth-child(1) {
+  max-width: 520px;
 }
 
 .main-banner__h1 {
@@ -33,11 +38,17 @@
   width: 260px;
 }
 
-.main-banner__placeholder {
+.main-banner__image {
   width: 400px;
-  height: 220px;
-  background: #F2F5F9;
+  position: relative;
 }
+
+.main-banner__image .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 
 .hot-categories {
   margin-top: 44px;
@@ -127,11 +138,11 @@
   flex-direction: column;
 }
 
-.hot-offer__image_placeholder {
+.hot-offer__image {
   width: 230px;
   height: 160px;
-  background: #2B333F;
 }
+
 
 .hot-offer__name {
   margin-top: 12px;
